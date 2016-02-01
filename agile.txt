@@ -1,0 +1,76 @@
+
+## Relations
+
+View
+
+n .. n
+
+Board
+
+n .. n
+
+Card
+
+
+
+* Saker ska trycka ihop sig när det blir fler, så att allt får plats
+
+
+
+## Card
+
+- Id
+- Title
+- Description (Markdown)
+- Type (Task, Idea)
+- Size (relative number)
+- Author
+- Assignee
+- Deadline
+- Boards
+- Tags
+- Background color
+- Title color
+
+## Board
+
+- Id
+- Title
+- Description (Markdown)
+- State
+- Type (Free, 1d, 2d, Swimlane, Backlog)
+- Background color
+- Title color
+- Frame
+
+## View
+
+- Id
+- Title
+- Description (Markdown)
+
+## Others
+
+### Tag
+
+- Id
+- Title
+- Background color
+- Title color
+- Icon
+
+### Card-Board Position
+
+- X
+- Y
+- Board Id
+- Card Id
+
+### Board-View Position
+
+- X
+- Y
+- Board Id
+- Card Id
+
+### 
