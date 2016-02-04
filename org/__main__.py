@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from .card import Card
-from .board import Board
+from .box import Box
 from samtt import init
 
 db = init('sqlite:////tmp/test.sqlite')
@@ -12,7 +12,7 @@ with db.transaction() as t:
     t.add(card)
     card2 = Card(title="Test card 2", description="Test card description")
     t.add(card2)
-    board = Board(title="Test board")
-    t.add(board)
-    board.cards.append(card)
-    board.cards.append(card2)
+    box = Box(title="Test box")
+    t.add(box)
+    box.cards.append(card)
+    box.cards.append(card2)
