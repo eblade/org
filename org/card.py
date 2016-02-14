@@ -6,6 +6,7 @@ from sqlalchemy.orm import relationship
 from samtt import Base, get_db
 
 from .types import PropertySet, Property
+from .exception import NotFound
 
 
 class _Card(Base):
@@ -52,6 +53,22 @@ def create_card(**kwargs):
 
 def get_card_by_id(card_id):
     with get_db().transaction() as t:
-        _card = t.query(_Card).filter(_Card.id == card_id).one()
+        _card = t.query(_Card).get(card_id)
+        if _card is None:
+            raise NotFound('Card with id %i does not exist' % card_id)
         card = Card.map_in(_card)
     return card
+
+
+def delete_card_by_id(card_id):
+    with get_db().transaction() as t:
+        t.query(_Card).filter(_Card.id == card_id).delete()
+
+
+def update_card_by_id(card_id, card):
+    with get_db().transaction() as t:
+        current = t.query(_Card).get(card_id)
+        card.map_out(current)
+        t.commit()
+
+    return get_card_by_id(card_id)
