@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import pytest
-import os
-import samtt
 
 from ..card import (
     create_card,
@@ -12,17 +10,6 @@ from ..card import (
 )
 
 from ..exception import NotFound
-
-
-TEMP_DB_PATH = '/tmp/org_test.sqlite'
-
-
-@pytest.fixture(scope='function')
-def db():
-    if os.path.exists(TEMP_DB_PATH):
-        os.remove(TEMP_DB_PATH)
-    db = samtt.init('sqlite:///' + TEMP_DB_PATH)
-    db.create_all()
 
 
 def test_create_card(db):
