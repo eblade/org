@@ -3,11 +3,12 @@
 
 import os, argparse, configparser
 
-from bikeshedding1.datamodel import Item
+from org.card import Card
+from org.box import Box, BoxToCard
 from samtt import init, Base
 
 parser = argparse.ArgumentParser(usage="create_tables")
-parser.add_argument('-c', '--config', default=os.getenv('BS_CONFIG', 'default.ini'),
+parser.add_argument('-c', '--config', default=os.getenv('ORG_CONFIG', 'org.ini'),
     help='specify what config file to run on')
 args = parser.parse_args()
 
