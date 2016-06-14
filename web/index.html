@@ -1,0 +1,39 @@
+<!doctype html>
+<html ng-app='org'>
+    <head>
+        <title>org</title>
+        <!--<link rel="stylesheet" type="text/css" href="css/index.css"/>-->
+        <script src="/js/angular.min.js"></script>
+        <script src="/js/angular-sanitize.min.js"></script>
+        <script src="/js/showdown.min.js"></script>
+        <script src="/js/markdown.js"></script>
+        <script src="/js/ngDialog.js"></script>
+        <script src="/js/org.js"></script>
+        <link rel="stylesheet" type="text/css" href="/css/index.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/ngDialog.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/ngDialog-theme-default.css"/>
+    </head>
+    <body ng-controller="Main">
+        <button ng-click="open_create_card()">Create card</button>
+        <script type="text/ng-template" id="card.html">
+            <div ng-controller="Card"
+                 style="border-left: {{message.level*10}}px solid gray;"
+                 class="card">
+                <div class="key">{{card.title}}</div>
+                <div btf-markdown="card.description">
+                </div>
+            </div>
+        </script>
+        <div ng-repeat="card in cards" ng-include="'card.html'">
+        </div>
+        <script type="text/ng-template" id="card_form.html">
+            Write some text.<br/>
+            <form ng-submit="create_card(title, description)">
+                <input ng-model="title">
+                <textarea ng-model="description" rows="10" cols="40"></textarea>
+                <br/>
+                <input type="submit" value="Send"/>
+            </form>
+        </script>
+    </body>
+</html>

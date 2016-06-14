@@ -37,17 +37,19 @@ class Card(PropertySet):
         )
 
     def map_out(self, e):
-        e.id = self.id
+        if self.id:
+            e.id = self.id
         e.title = self.title
         e.description = self.description
 
 
-def create_card(**kwargs):
+def create_card(card):
     with get_db().transaction() as t:
-        card = _Card(**kwargs)
-        t.add(card)
+        _card = _Card()
+        card.map_out(_card)
+        t.add(_card)
         t.commit()
-        id = card.id
+        id = _card.id
     return get_card_by_id(id)
 
 

@@ -23,7 +23,7 @@ class _Box(Base):
     cards = relationship("_Card", secondary="box_to_card")
 
 
-class BoxToCard(Base):
+class _BoxToCard(Base):
     __tablename__ = 'box_to_card'
 
     id = Column(Integer, primary_key=True)

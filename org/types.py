@@ -197,6 +197,13 @@ class PropertySet(metaclass=ClassWithProperties):
         raise NotImplemented
 
     @classmethod
+    def FromDict(cls, dct):
+        if dct is not None:
+            inst = cls()
+            inst.from_dict(dct)
+            return inst
+
+    @classmethod
     def FromRow(cls, dct, prefix=None):
         if dct is not None:
             inst = cls()
